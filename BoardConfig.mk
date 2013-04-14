@@ -33,7 +33,7 @@ BOARD_FORCE_RAMDISK_ADDRESS := 0x49400000
 BOARD_KERNEL_PAGE_SIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=villec2 no_console_suspend=1
 TARGET_KERNEL_CONFIG := villec2_defconfig
-TARGET_KERNEL_SOURCE := kernel/htc/villec2
+TARGET_KERNEL_SOURCE := ~/android_kernel_htc_villec2
 TARGET_SPECIFIC_HEADER_PATH := device/htc/villec2/include
 
 # Board
@@ -105,10 +105,6 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 # Webkit
 ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
-
-# Radio
-BOARD_USE_NEW_LIBRIL_HTC := true
-BOARD_USES_LEGACY_RIL := true
 
 # Misc
 COMMON_GLOBAL_CFLAGS += -DHTCLOG

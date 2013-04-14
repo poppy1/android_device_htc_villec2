@@ -17,3 +17,10 @@ wifi.interface=wlan0
 
 # UMS
 persist.sys.usb.config=mass_storage,adb
+
+#Device Info
+ro.device.cpu=Qualcomm MSM8660 Dual-Core 1.7GHz
+ro.device.gpu=Qualcomm Adreno 220
+ro.device.front_cam=VGA
+ro.device.rear_cam=8MP w/1080p HD Video Recording
+ro.device.screen_res=4.3in qHD 540x960
