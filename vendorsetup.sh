@@ -1,1 +1,1 @@
-add_lunch_combo cm_villec2-userdebug
+add_lunch_combo mk_villec2-userdebug
