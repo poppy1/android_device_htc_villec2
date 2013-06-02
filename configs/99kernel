@@ -15,7 +15,7 @@
 #  interactive
 #= lagfee
 #  performance
-GOV=ondemand
+GOV=lagfree
 
 
 # Config I/O scheduler
@@ -31,7 +31,7 @@ IO=sio
 # Default: 1566000 (1566Mhtz)
 # Overclockable to - 1836000 (1836Mhtz)
 # for badass set to 1566mhtz (best performance/battery life)
-MAXFREQ=1566000
+MAXFREQ=1914000
 
 
 # Config CPU min frequency
@@ -42,10 +42,10 @@ MINFREQ=384000
 
 # Config 3D GPU clock
 # 228571000 = 228mhz
-# 266667000 = 267mhz (default)
+# 266667000 = 267mhz
 # 300000000 = 300mhz (Recomended For balance of Performance and Battery life)
-# 320000000 = 320mhz
-GPU=266667000
+# 320000000 = 320mhz (default)
+GPU=320000000
 
 
 # Config 2D GPU clock
@@ -66,10 +66,10 @@ BADASS=2
 
 
 # Enable Sweep2Wake
-# 0 = disabled (default)
-# 1 = enabled
+# 0 = disabled
+# 1 = enabled (default)
 # 2 = enabled (with no button backlight during sweep)
-SWEEP=0
+SWEEP=1
 
 
 # Enable Fastcharge
@@ -87,10 +87,10 @@ FSYNC=2
 
 
 # TUN
-# Disabled by default
+# Enabled by default
 # 0 = Disabled
 # 1 = Enabled
-TUN=0
+TUN=1
 
 
 # End of configurable options #

@@ -45,7 +45,8 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
 
 # QC thermald config
-PRODUCT_COPY_FILES += device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
+PRODUCT_COPY_FILES += device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf \
+    device/htc/villec2/configs/99kernel:system/etc/init.d/99kernel
 
 # Some misc configuration files
 PRODUCT_COPY_FILES += \
