@@ -34,7 +34,8 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/ramdisk/fstab.villec2:root/fstab.villec2 \
     device/htc/villec2/ramdisk/init.villec2.rc:root/init.villec2.rc \
     device/htc/villec2/ramdisk/init.villec2.usb.rc:root/init.villec2.usb.rc \
-    device/htc/villec2/ramdisk/ueventd.villec2.rc:root/ueventd.villec2.rc
+    device/htc/villec2/ramdisk/ueventd.villec2.rc:root/ueventd.villec2.rc \
+    device/htc/villec2/ramdisk/remount.villec2:root/remount.villec2
   
 
 ## recovery and custom charging
@@ -45,14 +46,8 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
     device/htc/villec2/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
     
-      
-      
 # QC thermald config
 PRODUCT_COPY_FILES += device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
-
-# Some misc configuration files
-#PRODUCT_COPY_FILES += \
-#    device/htc/villec2/vold.fstab:system/etc/vold.fstab
 
 # Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
