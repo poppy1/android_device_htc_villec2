@@ -1,17 +1,16 @@
 import init.villec2.usb.rc
 
 on early-init
-    mkdir /storage 0050 system sdcard_r
+    mkdir /storage/usbdisk 0000 system system
     mkdir /storage/sdcard0 0000 system system
-    mkdir /storage/usbdisk 0775 system system
+    
     
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
     export EXTERNAL_STORAGE /storage/sdcard0
-
-on init
-    mkdir /devlog 0700 root root
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
 
     # load msm8660 firmware so things have time to initialize
     rm /vendor
@@ -20,9 +19,10 @@ on init
     mkdir /vendor/firmware/misc 0771 system system
     mkdir /vendor/firmware/adsp 0771 system system
 
-on emmc-fs
-    # mount all mmc partitions
-    mount_all /fstab.villec2
+    wait /dev/block/mmcblk0p17
+    wait /dev/block/mmcblk0p19
+    mount vfat /dev/block/mmcblk0p17 /vendor/firmware/misc ro shortname=lower
+    mount vfat /dev/block/mmcblk0p19 /vendor/firmware/adsp ro shortname=lower
 
     symlink /vendor/firmware/adsp/q6.b09 /vendor/firmware/q6.b09
     symlink /vendor/firmware/adsp/q6.b08 /vendor/firmware/q6.b08
@@ -49,6 +49,15 @@ on emmc-fs
 
     # Force loading of modem and Q6 images
     write /dev/smd_pkt_loopback 1
+# 4.3 requires this
+    chmod 0644 /proc/cmdline
+
+on init
+    mkdir /devlog 0700 root root
+
+on emmc-fs
+    # mount all mmc partitions
+    mount_all /fstab.villec2
 
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
 
@@ -97,8 +106,6 @@ on boot
 
     # for modem link
     chown system system /sys/module/serial/parameters/modem_enabled
-    # 4.3 requires this
-    chmod 0644 /proc/cmdline
 
     # wifi
     mkdir /data/misc 1771 system misc
@@ -238,9 +245,9 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p23 /dev/block/mmc
     user root
 
 service thermald /system/bin/thermald
-#    user root
-#    group root
-#    disabled
+    user root
+    group root
+    disabled
 
 service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
     user root
@@ -249,8 +256,6 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c /data/mis
     disabled
     oneshot
 
-on property:ro.boot.emmc=true
-    start rmt_storage 
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
 
