@@ -1,65 +1,65 @@
 #ifndef _MSM_KGSL_H
 #define _MSM_KGSL_H
 
-#define KGSL_VERSION_MAJOR 3
-#define KGSL_VERSION_MINOR 11
+#define KGSL_VERSION_MAJOR        3
+#define KGSL_VERSION_MINOR        11
 
-#define KGSL_CONTEXT_SAVE_GMEM 0x00000001
-#define KGSL_CONTEXT_NO_GMEM_ALLOC 0x00000002
-#define KGSL_CONTEXT_SUBMIT_IB_LIST 0x00000004
-#define KGSL_CONTEXT_CTX_SWITCH 0x00000008
-#define KGSL_CONTEXT_PREAMBLE 0x00000010
-#define KGSL_CONTEXT_TRASH_STATE 0x00000020
-#define KGSL_CONTEXT_PER_CONTEXT_TS 0x00000040
+#define KGSL_CONTEXT_SAVE_GMEM		0x00000001
+#define KGSL_CONTEXT_NO_GMEM_ALLOC	0x00000002
+#define KGSL_CONTEXT_SUBMIT_IB_LIST	0x00000004
+#define KGSL_CONTEXT_CTX_SWITCH		0x00000008
+#define KGSL_CONTEXT_PREAMBLE		0x00000010
+#define KGSL_CONTEXT_TRASH_STATE	0x00000020
+#define KGSL_CONTEXT_PER_CONTEXT_TS	0x00000040
 
 #define KGSL_CONTEXT_INVALID 0xffffffff
 
-#define KGSL_MEMFLAGS_GPUREADONLY 0x01000000
+#define KGSL_MEMFLAGS_GPUREADONLY	0x01000000
 
-#define KGSL_FLAGS_NORMALMODE 0x00000000
-#define KGSL_FLAGS_SAFEMODE 0x00000001
+#define KGSL_FLAGS_NORMALMODE  0x00000000
+#define KGSL_FLAGS_SAFEMODE    0x00000001
 #define KGSL_FLAGS_INITIALIZED0 0x00000002
 #define KGSL_FLAGS_INITIALIZED 0x00000004
-#define KGSL_FLAGS_STARTED 0x00000008
-#define KGSL_FLAGS_ACTIVE 0x00000010
-#define KGSL_FLAGS_RESERVED0 0x00000020
-#define KGSL_FLAGS_RESERVED1 0x00000040
-#define KGSL_FLAGS_RESERVED2 0x00000080
-#define KGSL_FLAGS_SOFT_RESET 0x00000100
+#define KGSL_FLAGS_STARTED     0x00000008
+#define KGSL_FLAGS_ACTIVE      0x00000010
+#define KGSL_FLAGS_RESERVED0   0x00000020
+#define KGSL_FLAGS_RESERVED1   0x00000040
+#define KGSL_FLAGS_RESERVED2   0x00000080
+#define KGSL_FLAGS_SOFT_RESET  0x00000100
 #define KGSL_FLAGS_PER_CONTEXT_TIMESTAMPS 0x00000200
 
-#define KGSL_CLK_SRC 0x00000001
-#define KGSL_CLK_CORE 0x00000002
-#define KGSL_CLK_IFACE 0x00000004
-#define KGSL_CLK_MEM 0x00000008
+#define KGSL_CLK_SRC	0x00000001
+#define KGSL_CLK_CORE	0x00000002
+#define KGSL_CLK_IFACE	0x00000004
+#define KGSL_CLK_MEM	0x00000008
 #define KGSL_CLK_MEM_IFACE 0x00000010
-#define KGSL_CLK_AXI 0x00000020
+#define KGSL_CLK_AXI	0x00000020
 
 enum kgsl_ctx_reset_stat {
-	KGSL_CTX_STAT_NO_ERROR = 0x00000000,
-	KGSL_CTX_STAT_GUILTY_CONTEXT_RESET_EXT = 0x00000001,
-	KGSL_CTX_STAT_INNOCENT_CONTEXT_RESET_EXT = 0x00000002,
-	KGSL_CTX_STAT_UNKNOWN_CONTEXT_RESET_EXT = 0x00000003
+	KGSL_CTX_STAT_NO_ERROR				= 0x00000000,
+	KGSL_CTX_STAT_GUILTY_CONTEXT_RESET_EXT		= 0x00000001,
+	KGSL_CTX_STAT_INNOCENT_CONTEXT_RESET_EXT	= 0x00000002,
+	KGSL_CTX_STAT_UNKNOWN_CONTEXT_RESET_EXT		= 0x00000003
 };
 
 #define KGSL_MAX_PWRLEVELS 5
 
 #define KGSL_CONVERT_TO_MBPS(val) \
-(val*1000*1000U)
+	(val*1000*1000U)
 
 enum kgsl_deviceid {
-	KGSL_DEVICE_3D0 = 0x00000000,
-	KGSL_DEVICE_2D0 = 0x00000001,
-	KGSL_DEVICE_2D1 = 0x00000002,
-	KGSL_DEVICE_MAX = 0x00000003
+	KGSL_DEVICE_3D0		= 0x00000000,
+	KGSL_DEVICE_2D0		= 0x00000001,
+	KGSL_DEVICE_2D1		= 0x00000002,
+	KGSL_DEVICE_MAX		= 0x00000003
 };
 
 enum kgsl_user_mem_type {
-	KGSL_USER_MEM_TYPE_PMEM = 0x00000000,
-	KGSL_USER_MEM_TYPE_ASHMEM = 0x00000001,
-	KGSL_USER_MEM_TYPE_ADDR = 0x00000002,
-	KGSL_USER_MEM_TYPE_ION = 0x00000003,
-	KGSL_USER_MEM_TYPE_MAX = 0x00000004,
+	KGSL_USER_MEM_TYPE_PMEM		= 0x00000000,
+	KGSL_USER_MEM_TYPE_ASHMEM	= 0x00000001,
+	KGSL_USER_MEM_TYPE_ADDR		= 0x00000002,
+	KGSL_USER_MEM_TYPE_ION		= 0x00000003,
+	KGSL_USER_MEM_TYPE_MAX		= 0x00000004,
 };
 
 struct kgsl_devinfo {
@@ -73,8 +73,8 @@ struct kgsl_devinfo {
 };
 
 /* this structure defines the region of memory that can be mmap()ed from this
-driver. The timestamp fields are volatile because they are written by the
-GPU
+   driver. The timestamp fields are volatile because they are written by the
+   GPU
 */
 struct kgsl_devmemstore {
 	volatile unsigned int soptimestamp;
@@ -94,28 +94,28 @@ struct kgsl_devmemstore {
 	 offsetof(struct kgsl_devmemstore, field))
 
 enum kgsl_timestamp_type {
-	KGSL_TIMESTAMP_CONSUMED = 0x00000001,
-	KGSL_TIMESTAMP_RETIRED = 0x00000002,
-	KGSL_TIMESTAMP_QUEUED = 0x00000003,
+	KGSL_TIMESTAMP_CONSUMED = 0x00000001, 
+	KGSL_TIMESTAMP_RETIRED  = 0x00000002, 
+	KGSL_TIMESTAMP_QUEUED   = 0x00000003,
 };
 
 enum kgsl_property_type {
-	KGSL_PROP_DEVICE_INFO = 0x00000001,
-	KGSL_PROP_DEVICE_SHADOW = 0x00000002,
-	KGSL_PROP_DEVICE_POWER = 0x00000003,
-	KGSL_PROP_SHMEM = 0x00000004,
+	KGSL_PROP_DEVICE_INFO     = 0x00000001,
+	KGSL_PROP_DEVICE_SHADOW   = 0x00000002,
+	KGSL_PROP_DEVICE_POWER    = 0x00000003,
+	KGSL_PROP_SHMEM           = 0x00000004,
 	KGSL_PROP_SHMEM_APERTURES = 0x00000005,
-	KGSL_PROP_MMU_ENABLE = 0x00000006,
+	KGSL_PROP_MMU_ENABLE 	  = 0x00000006,
 	KGSL_PROP_INTERRUPT_WAITS = 0x00000007,
-	KGSL_PROP_VERSION = 0x00000008,
-	KGSL_PROP_GPU_RESET_STAT = 0x00000009,
-	KGSL_PROP_PWRCTRL = 0x0000000E,
+	KGSL_PROP_VERSION         = 0x00000008,
+	KGSL_PROP_GPU_RESET_STAT  = 0x00000009,
+	KGSL_PROP_PWRCTRL         = 0x0000000E,
 };
 
 struct kgsl_shadowprop {
 	unsigned int gpuaddr;
 	unsigned int size;
-	unsigned int flags;
+	unsigned int flags; 
 };
 
 struct kgsl_pwrlevel {
@@ -133,12 +133,12 @@ struct kgsl_version {
 
 #ifdef __KERNEL__
 
-#define KGSL_3D0_REG_MEMORY "kgsl_3d0_reg_memory"
-#define KGSL_3D0_IRQ "kgsl_3d0_irq"
-#define KGSL_2D0_REG_MEMORY "kgsl_2d0_reg_memory"
-#define KGSL_2D0_IRQ "kgsl_2d0_irq"
-#define KGSL_2D1_REG_MEMORY "kgsl_2d1_reg_memory"
-#define KGSL_2D1_IRQ "kgsl_2d1_irq"
+#define KGSL_3D0_REG_MEMORY	"kgsl_3d0_reg_memory"
+#define KGSL_3D0_IRQ		"kgsl_3d0_irq"
+#define KGSL_2D0_REG_MEMORY	"kgsl_2d0_reg_memory"
+#define KGSL_2D0_IRQ		"kgsl_2d0_irq"
+#define KGSL_2D1_REG_MEMORY	"kgsl_2d1_reg_memory"
+#define KGSL_2D1_IRQ		"kgsl_2d1_irq"
 
 enum kgsl_iommu_context_id {
 	KGSL_IOMMU_CONTEXT_USER = 0,
@@ -186,7 +186,7 @@ struct kgsl_ibdesc {
 
 struct kgsl_device_getproperty {
 	unsigned int type;
-	void *value;
+	void  *value;
 	unsigned int sizebytes;
 };
 
@@ -215,7 +215,7 @@ struct kgsl_ringbuffer_issueibcmds {
 	unsigned int drawctxt_id;
 	unsigned int ibdesc_addr;
 	unsigned int numibs;
-	unsigned int timestamp;
+	unsigned int timestamp; 
 	unsigned int flags;
 };
 
@@ -224,7 +224,7 @@ struct kgsl_ringbuffer_issueibcmds {
 
 struct kgsl_cmdstream_readtimestamp {
 	unsigned int type;
-	unsigned int timestamp;
+	unsigned int timestamp; 
 };
 
 #define IOCTL_KGSL_CMDSTREAM_READTIMESTAMP_OLD \
@@ -248,7 +248,7 @@ struct kgsl_cmdstream_freememontimestamp {
 
 struct kgsl_drawctxt_create {
 	unsigned int flags;
-	unsigned int drawctxt_id;
+	unsigned int drawctxt_id; 
 };
 
 #define IOCTL_KGSL_DRAWCTXT_CREATE \
@@ -263,12 +263,12 @@ struct kgsl_drawctxt_destroy {
 
 struct kgsl_map_user_mem {
 	int fd;
-	unsigned int gpuaddr;
+	unsigned int gpuaddr;   
 	unsigned int len;
 	unsigned int offset;
-	unsigned int hostptr;
+	unsigned int hostptr;   
 	enum kgsl_user_mem_type memtype;
-	unsigned int reserved;
+	unsigned int reserved;	
 };
 
 #define IOCTL_KGSL_MAP_USER_MEM \
@@ -277,7 +277,7 @@ struct kgsl_map_user_mem {
 struct kgsl_cmdstream_readtimestamp_ctxtid {
 	unsigned int context_id;
 	unsigned int type;
-	unsigned int timestamp;
+	unsigned int timestamp; 
 };
 
 #define IOCTL_KGSL_CMDSTREAM_READTIMESTAMP_CTXTID \
@@ -296,7 +296,7 @@ struct kgsl_cmdstream_freememontimestamp_ctxtid {
 
 struct kgsl_sharedmem_from_pmem {
 	int pmem_fd;
-	unsigned int gpuaddr;
+	unsigned int gpuaddr;	
 	unsigned int len;
 	unsigned int offset;
 };
@@ -333,12 +333,12 @@ struct kgsl_gmem_desc {
 };
 
 struct kgsl_buffer_desc {
-	void *hostptr;
-	unsigned int gpuaddr;
-	int size;
-	unsigned int format;
-	unsigned int pitch;
-	unsigned int enabled;
+	void 			*hostptr;
+	unsigned int	gpuaddr;
+	int				size;
+	unsigned int	format;
+	unsigned int  	pitch;
+	unsigned int  	enabled;
 };
 
 struct kgsl_bind_gmem_shadow {
@@ -351,10 +351,10 @@ struct kgsl_bind_gmem_shadow {
 };
 
 #define IOCTL_KGSL_DRAWCTXT_BIND_GMEM_SHADOW \
-	_IOW(KGSL_IOC_TYPE, 0x22, struct kgsl_bind_gmem_shadow)
+    _IOW(KGSL_IOC_TYPE, 0x22, struct kgsl_bind_gmem_shadow)
 
 struct kgsl_sharedmem_from_vmalloc {
-	unsigned int gpuaddr;
+	unsigned int gpuaddr;	
 	unsigned int hostptr;
 	unsigned int flags;
 };
@@ -374,12 +374,12 @@ struct kgsl_drawctxt_set_bin_base_offset {
 	_IOW(KGSL_IOC_TYPE, 0x25, struct kgsl_drawctxt_set_bin_base_offset)
 
 enum kgsl_cmdwindow_type {
-	KGSL_CMDWINDOW_MIN = 0x00000000,
-	KGSL_CMDWINDOW_2D = 0x00000000,
-	KGSL_CMDWINDOW_3D = 0x00000001,
-	KGSL_CMDWINDOW_MMU = 0x00000002,
+	KGSL_CMDWINDOW_MIN     = 0x00000000,
+	KGSL_CMDWINDOW_2D      = 0x00000000,
+	KGSL_CMDWINDOW_3D      = 0x00000001, 
+	KGSL_CMDWINDOW_MMU     = 0x00000002,
 	KGSL_CMDWINDOW_ARBITER = 0x000000FF,
-	KGSL_CMDWINDOW_MAX = 0x000000FF,
+	KGSL_CMDWINDOW_MAX     = 0x000000FF,
 };
 
 struct kgsl_cmdwindow_write {
@@ -403,7 +403,7 @@ struct kgsl_gpumem_alloc {
 struct kgsl_cff_syncmem {
 	unsigned int gpuaddr;
 	unsigned int len;
-	unsigned int __pad[2];
+	unsigned int __pad[2]; 
 };
 
 #define IOCTL_KGSL_CFF_SYNCMEM \
@@ -411,11 +411,11 @@ struct kgsl_cff_syncmem {
 
 
 struct kgsl_timestamp_event {
-	int type;
-	unsigned int timestamp;
-	unsigned int context_id;
-	void *priv;
-	size_t len;
+	int type;                
+	unsigned int timestamp;  
+	unsigned int context_id; 
+	void *priv;              
+	size_t len;              
 };
 
 #define IOCTL_KGSL_TIMESTAMP_EVENT \
@@ -425,7 +425,7 @@ struct kgsl_timestamp_event {
 #define KGSL_TIMESTAMP_EVENT_GENLOCK 1
 
 struct kgsl_timestamp_event_genlock {
-	int handle;
+	int handle; 
 };
 
 
@@ -443,4 +443,3 @@ int kgsl_gem_obj_addr(int drm_fd, int handle, unsigned long *start,
 #endif
 #endif
 #endif 
-

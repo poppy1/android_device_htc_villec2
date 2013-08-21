@@ -20,7 +20,6 @@ PRODUCT_COPY_FILES += \
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
@@ -36,31 +35,27 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-# Audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio_policy.msm8660 \
-    audio.primary.msm8660 \
-    libaudioutils \
-    audio.usb.default
-
-# GPS
-PRODUCT_COPY_FILES += \
-    device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
-
-# Graphics
+# QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
-    lights.msm8660 \
+    lights.msm8660\
     libgenlock \
     libmemalloc \
     liboverlay \
     libqdutils \
     libtilerenderer
 
-# OMX
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio_policy.msm8660 \
+    audio.primary.msm8660 \
+    libaudioutils \
+    audio_policy.conf
+
+# Omx
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libdivxdrmdecrypt \
@@ -75,15 +70,24 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxAmrEnc
 
+PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    libsurfaceflinger_client
+
+# Camera
+#PRODUCT_PACKAGES += \
+#    camera.msm8660
+
+# GPS
+PRODUCT_COPY_FILES += \
+    device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
+
+
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
-# USB
+# Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
@@ -99,29 +103,32 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
-# Thermal configuration
-PRODUCT_COPY_FILES += \
-    device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
-
 # Media configuration
 PRODUCT_COPY_FILES += \
     device/htc/villec2/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/villec2/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/htc/villec2/configs/audio_policy.conf:system/etc/audio_policy.conf
+    device/htc/villec2/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+# Thermal configuration
+PRODUCT_COPY_FILES += \
+    device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-# Common build properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true \
-    debug.egl.hw=1 \
-    debug.mdpcomp.logs=0 \
-    debug.sf.hw=1 \
-    dev.pm.dyn_samplingrate=1 \
-    ro.opengles.version=131072
-
 # BT
 PRODUCT_COPY_FILES += \
     device/htc/villec2/bluetooth/bt_vendor.conf:/system/etc/bluetooth/bt_vendor.conf
+
+# Common build properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true \
+    debug.composition.type=dyn \
+    debug.egl.hw=1 \
+    debug.enabletr=true \
+    debug.mdpcomp.maxlayer=0 \
+    debug.mdpcomp.logs=0 \
+    debug.sf.hw=1 \
+    dev.pm.dyn_samplingrate=1 \
+    ro.opengles.version=131072 \
+    ro.bq.gpu_to_cpu_unsupported=1
