@@ -20,11 +20,11 @@ PRODUCT_COPY_FILES += \
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
@@ -40,9 +40,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio_policy.msm8660 \
+    audio_policy.conf \
     audio.primary.msm8660 \
-    libaudioutils \
-    audio.usb.default
+    audio.usb.default \
+    libaudio-resampler \
+    libaudioutils
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8660
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -62,18 +68,15 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
     libdivxdrmdecrypt \
+    libI420colorconvert \
     libmm-omxcore \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
     libOmxAacEnc \
     libOmxAmrEnc \
-    libstagefrighthw \
-    libOmxQcelp13Enc \
-    libOmxEvrcEnc \
-    libOmxAmrEnc
+    libstagefrighthw
 
 # HDMI
 PRODUCT_PACKAGES += \
@@ -87,27 +90,25 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    librs_jni
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+# Media configuration
+PRODUCT_COPY_FILES += \
+    device/htc/villec2/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    device/htc/villec2/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/villec2/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+# WiFi
+
+PRODUCT_COPY_FILES += \
+    device/htc/villec2/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
 # Thermal configuration
 PRODUCT_COPY_FILES += \
     device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
-
-# Media configuration
-PRODUCT_COPY_FILES += \
-    device/htc/villec2/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/villec2/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/htc/villec2/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
@@ -117,11 +118,9 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     debug.egl.hw=1 \
+    debug.enabletr=true \
+    debug.mdpcomp.maxlayer=0 \
     debug.mdpcomp.logs=0 \
     debug.sf.hw=1 \
     dev.pm.dyn_samplingrate=1 \
     ro.opengles.version=131072
-
-# BT
-PRODUCT_COPY_FILES += \
-    device/htc/villec2/bluetooth/bt_vendor.conf:/system/etc/bluetooth/bt_vendor.conf

@@ -3,6 +3,7 @@
 #
 
 ro.sf.lcd_density=240
+#
 # NETWORK/DATA/RADIO
 #
 mobiledata.interfaces=rmnet0
@@ -25,17 +26,10 @@ ro.ril.hsxpa=3
 ro.ril.set.mtu1472=1
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=160
-
-# For QC perf binary hooks
-ro.vendor.extension_library = /system/lib/libqc-opt.so
-
-# wifi
-wifi.interface=wlan0
-
+#
 # Power Saving/Sleep
 #
 ro.ril.disable.power.collapse=0
-# ro.ril.fast.dormancy.rule=1
 pm.sleep_mode=1
 #
 # Misc
@@ -55,7 +49,10 @@ ro.max.fling_velocity=12000
 ro.min.fling_velocity=8000
 view.scroll_friction=0
 #
-
+# GooManger
+#
+ro.goo.developerid=dominos_liberty	
+ro.goo.rom=Coolrom
 #
 #### AUTO-ROTATE LOCKSCREEN ####
 # (uncomment below line to enable)
@@ -63,9 +60,3 @@ view.scroll_friction=0
 #
 #
 
-#
-ROM statistics
-#
-romzj.rom.id=8d802bdd-53b9-74f3-5d94-da77f9a2afb0
-romzj.rom.version=RC1
-romzj.rom.version.code=130605

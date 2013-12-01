@@ -6,16 +6,16 @@
 
 #define MSM_ROTATOR_IOCTL_MAGIC 'R'
 
-#define MSM_ROTATOR_IOCTL_START \
+#define MSM_ROTATOR_IOCTL_START   \
 		_IOWR(MSM_ROTATOR_IOCTL_MAGIC, 1, struct msm_rotator_img_info)
-#define MSM_ROTATOR_IOCTL_ROTATE \
+#define MSM_ROTATOR_IOCTL_ROTATE   \
 		_IOW(MSM_ROTATOR_IOCTL_MAGIC, 2, struct msm_rotator_data_info)
-#define MSM_ROTATOR_IOCTL_FINISH \
+#define MSM_ROTATOR_IOCTL_FINISH   \
 		_IOW(MSM_ROTATOR_IOCTL_MAGIC, 3, int)
 
-#define ROTATOR_VERSION_01 0xA5B4C301
+#define ROTATOR_VERSION_01	0xA5B4C301
 
-#define ROTATOR_FLAGS_BIT_PERFORMANCE (1 << 0)
+#define ROTATOR_FLAGS_BIT_PERFORMANCE  (1 << 0)
 
 enum rotator_clk_type {
 	ROTATOR_CORE_CLK,
@@ -25,14 +25,14 @@ enum rotator_clk_type {
 
 struct msm_rotator_img_info {
 	unsigned int session_id;
-	struct msmfb_img src;
-	struct msmfb_img dst;
+	struct msmfb_img  src;
+	struct msmfb_img  dst;
 	struct mdp_rect src_rect;
-	unsigned int dst_x;
-	unsigned int dst_y;
-	unsigned char rotations;
+	unsigned int    dst_x;
+	unsigned int    dst_y;
+	unsigned char   rotations;
 	int enable;
-	unsigned int downscale_ratio;
+	unsigned int	downscale_ratio;
 	unsigned int secure;
 	unsigned int flags;
 };

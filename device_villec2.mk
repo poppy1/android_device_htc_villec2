@@ -29,6 +29,9 @@ PRODUCT_PACKAGES += \
 # Wifi
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
+# Bluetooth/wifi Firmware
+$(call inherit-product-if-exists, device/htc/villec2/bcm_hcd.mk)
+
 # Boot ramdisk setup
 PRODUCT_COPY_FILES += \
     device/htc/villec2/ramdisk/fstab.villec2:root/fstab.villec2 \
@@ -36,6 +39,7 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/ramdisk/init.villec2.usb.rc:root/init.villec2.usb.rc \
     device/htc/villec2/ramdisk/ueventd.villec2.rc:root/ueventd.villec2.rc \
     device/htc/villec2/ramdisk/remount.villec2:root/remount.villec2
+
   
 
 ## recovery and custom charging
@@ -46,8 +50,11 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
     device/htc/villec2/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
     
+      
+      
 # QC thermald config
 PRODUCT_COPY_FILES += device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
+
 
 # Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
@@ -127,6 +134,7 @@ PRODUCT_LOCALES += en_US hdpi
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/htc/villec2/villec2-vendor.mk)
 
+$(call inherit-product-if-exists, vendor/htc-extra/villec2/villec2-vendor.mk)
 # media profiles and capabilities spec
 $(call inherit-product, device/htc/villec2/media_a1026.mk)
 

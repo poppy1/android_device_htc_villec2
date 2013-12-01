@@ -80,7 +80,7 @@ SectionVerb
 	Name "HiFiPROXY Rx"
 
 	EnableSequence
-		'AFE_PCM_RX Audio Mixer MultiMedia1':1:1
+		'AFE_PCM_RX Audio Mixer MultiMedia1'1:1
 	EndSequence
 
 	DisableSequence
@@ -280,7 +280,7 @@ SectionVerb
 		'SLIMBUS_0_RX Audio Mixer MultiMedia3':1:0
 	EndSequence
 
-	# ALSA PCMs
+# ALSA PCMs
 	CapturePCM 0
 	PlaybackPCM 4
 	ACDBID 0:0
@@ -639,6 +639,7 @@ SectionVerb
 		'SLIM_0_RX_Voice Mixer CSVoice':1:0
 		'Voice_Tx Mixer SLIM_0_TX_Voice':1:0
 	EndSequence
+
 
 	# ALSA PCMs
 	CapturePCM 2
@@ -1585,8 +1586,8 @@ SectionDevice
 		'SLIM_0_TX Channels':0:One
 		'SLIM TX7 MUX':0:DEC6
 		'DEC6 MUX':0:ADC1
-		'DEC6 Volume':1:100
-		'ADC1 Volume':1:300
+		'DEC6 Volume':1:76
+		'ADC1 Volume':1:70
 		'MICBIAS1 CAPLESS Switch':1:0
 		'MICBIAS1 PD MODE':1:1
 	EndSequence
@@ -1613,7 +1614,7 @@ SectionDevice
 		'SLIM TX7 MUX':0:DEC6
 		'DEC6 MUX':0:ADC1
 		'DEC6 Volume':1:76
-		'ADC1 Volume':1:150
+		'ADC1 Volume':1:100
 		'MICBIAS1 CAPLESS Switch':1:0
 		'MICBIAS1 PD MODE':1:1
 	EndSequence
@@ -1978,7 +1979,7 @@ SectionDevice
 	DisableSequence
 	EndSequence
 
-	ACDBID 10:1
+	ACDBID 0:1
 
 EndSection
 
